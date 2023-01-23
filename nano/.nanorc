@@ -1,0 +1,15 @@
+# coding
+set tabsize 2
+set autoindent
+set linenumbers
+set breaklonglines
+
+# ui
+set minibar
+set mouse
+set emptyline
+set nohelp
+
+# misc
+set multibuffer
+set saveonexit

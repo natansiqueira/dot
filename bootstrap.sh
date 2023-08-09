@@ -16,7 +16,7 @@ brew update
 brew upgrade
 
 # echo "→ Downloading dotfiles into user folder..."
-# git clone https://github.com/natanounatan/dot.git ~/dot
+git clone https://github.com/natanounatan/dot.git ~/dot
 cd ~/dot
 # echo "✓ dotfiles download OK."
 

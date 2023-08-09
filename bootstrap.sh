@@ -33,8 +33,8 @@ echo "→ Installing CLI apps..."
 brew install $(cat brew/brewfile|grep -v "#")
 
 echo "→ Configuring Git..."
-ln -sf ~/dot/git/config ~/.gitconfig
-ln -sf ~/dot/git/ignore_global ~/.gitignore_global
+ln -sf ~/Repos/github.com/natanounatan/dot/git/config ~/.gitconfig
+ln -sf ~/Repos/github.com/natanounatan/dot/git/ignore_global ~/.gitignore_global
 # Add personal information in your .gitlocal, not .gitconfig!
 
 echo "→ Configuring ssh..."
@@ -42,7 +42,10 @@ if [ ! -d ~/.ssh ]
 then
     ssh-keygen -t ed25519 -C "natan.siqueira@icloud.com" -f ~/.ssh/id_personal
 fi
-ln -sf ~/dot/git/ssh-config ~/.ssh/config
+ln -sf ~/Repos/github.com/natanounatan/dot/git/ssh-config ~/.ssh/config
+
+echo "→ Configuring bash..."
+ln -sf ~/Repos/github.com/natanounatan/dot/misc/.bashrc ~/.bashrc
 
 # --------------–-------–--------–--------–-------–--–-----
 # macOS settings

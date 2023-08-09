@@ -21,7 +21,13 @@ defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Restart automatically if the computer freezes
-#sudo systemsetup -setrestartfreeze on
+sudo systemsetup -setrestartfreeze on
+
+# Disable smart quotes as they're annoying when typing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Disable smart dashes as they're annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # --------------–-------–--------–--------–-------–--–-----
 # Trackpad, mouse and keyboard

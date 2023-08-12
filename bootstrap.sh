@@ -9,13 +9,15 @@ if test ! $(which brew)
 then
   echo " → Installing Homebrew for package management..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/natanounatan/.zprofile
+  (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/$USER/.zprofile
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 brew update
 brew upgrade
 
 # echo "→ Downloading dotfiles into user folder..."
+mkdir -p ~/Repos/github.com/$USER/
+cd ~/Repos/github.com/$USER/
 git clone https://github.com/natanounatan/dot.git ~/dot
 cd ~/dot
 # echo "✓ dotfiles download OK."
@@ -33,8 +35,8 @@ echo "→ Installing CLI apps..."
 brew install $(cat brew/brewfile|grep -v "#")
 
 echo "→ Configuring Git..."
-ln -sf ~/Repos/github.com/natanounatan/dot/git/config ~/.gitconfig
-ln -sf ~/Repos/github.com/natanounatan/dot/git/ignore_global ~/.gitignore_global
+ln -sf ~/Repos/github.com/$USER/dot/git/config ~/.gitconfig
+ln -sf ~/Repos/github.com/$USER/dot/git/ignore_global ~/.gitignore_global
 # Add personal information in your .gitlocal, not .gitconfig!
 
 echo "→ Configuring ssh..."
@@ -42,10 +44,13 @@ if [ ! -d ~/.ssh ]
 then
     ssh-keygen -t ed25519 -C "natan.siqueira@icloud.com" -f ~/.ssh/id_personal
 fi
-ln -sf ~/Repos/github.com/natanounatan/dot/git/ssh-config ~/.ssh/config
+ln -sf ~/Repos/github.com/$USER/dot/git/ssh-config ~/.ssh/config
+
+echo "→ Configuring vim..."
+ln -sf ~/Repos/github.com/$USER/dot/misc/.vimrc ~/.vimrc
 
 echo "→ Configuring bash..."
-ln -sf ~/Repos/github.com/natanounatan/dot/misc/.bashrc ~/.bashrc
+ln -sf ~/Repos/github.com/$USER/dot/misc/.bashrc ~/.bashrc
 
 # --------------–-------–--------–--------–-------–--–-----
 # macOS settings

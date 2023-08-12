@@ -88,3 +88,5 @@ __ps1() {
 }
 
 PROMPT_COMMAND="__ps1"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

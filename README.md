@@ -25,6 +25,10 @@ $ xcode-select --install
 $ curl -L https://raw.github.com/natanounatan/dot/master/bootstrap.sh | sh
 ```
 
+Have fun!
+
+<img width="842" alt="Terminal with bash shell" src="https://github.com/natanounatan/dot/assets/141770869/f1b4e3f0-0cb7-4230-9105-8fd6850d46c1">
+
 # thanks to...
 * [Diéssica](https://github.com/diessica/dotfiles) for the base for these repository and where I got to know what dotfiles are
 * [Rob](https://github.com/rwxrob/dot) for the scripts and bash files structure and organization

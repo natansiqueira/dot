@@ -11,6 +11,23 @@ export GOBIN="$HOME/.local/bin"
 export EDITOR="vim"
 
 # --------------–-------–--------–--------–-------–--–-----
+# ALIASES
+# --------------–-------–--------–--------–-------–--–-----
+alias g='git'
+alias dot='cd $DOTFILES'
+alias scripts='cd $SCRIPTS'
+alias ls='ls -h --color=auto'
+alias df='df -h'
+alias chmox='chmod +x'
+alias temp='cd $(mktemp -d)'
+alias more="less"
+alias zet="cd $ZETDIR"
+alias repos="cd $REPOS"
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true; killall Finder"
+alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false; killall Finder"
+
+# --------------–-------–--------–--------–-------–--–-----
 # PATH
 # --------------–-------–--------–--------–-------–--–-----
 pathprepend() {
@@ -27,6 +44,11 @@ pathprepend() {
 pathprepend \
 	"$HOME/.local/bin" \
 	"$SCRIPTS"
+
+# --------------–-------–--------–--------–-------–--–-----
+# AUTO COMPLETE
+# --------------–-------–--------–--------–-------–--–-----
+complete -C keg keg
 
 # --------------–-------–--------–--------–-------–--–-----
 # PROMPT
@@ -66,25 +88,3 @@ __ps1() {
 }
 
 PROMPT_COMMAND="__ps1"
-
-# --------------–-------–--------–--------–-------–--–-----
-# ALIASES
-# --------------–-------–--------–--------–-------–--–-----
-alias g='git'
-alias dot='cd $DOTFILES'
-alias scripts='cd $SCRIPTS'
-alias ls='ls -h --color=auto'
-alias df='df -h'
-alias chmox='chmod +x'
-alias temp='cd $(mktemp -d)'
-alias more="less"
-alias zet="cd $ZETDIR"
-alias repos="cd $REPOS"
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true; killall Finder"
-alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false; killall Finder"
-
-# --------------–-------–--------–--------–-------–--–-----
-# AUTO COMPLETE
-# --------------–-------–--------–--------–-------–--–-----
-complete -C keg keg

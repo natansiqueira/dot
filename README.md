@@ -25,6 +25,14 @@ $ xcode-select --install
 $ curl -L https://raw.github.com/natanounatan/dot/master/bootstrap.sh | sh
 ```
 
+**4.** Set Bash as the default shell
+> Append `/opt/homebrew/bin/bash` to your `/etc/shells` file.
+> You can replace vim with your favorite text editor.
+```sh
+$ sudo vim /etc/shells
+```
+Save & exit then restart your Terminal
+
 Have fun!
 
 <img width="842" alt="Terminal with bash shell" src="https://github.com/natanounatan/dot/assets/141770869/f1b4e3f0-0cb7-4230-9105-8fd6850d46c1">

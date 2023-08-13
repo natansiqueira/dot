@@ -6,7 +6,8 @@ export REPOS="$HOME/Repos"
 export GHREPOS="$REPOS/github.com/$GITUSER"
 export DOTFILES="$GHREPOS/dot"
 export SCRIPTS="$DOTFILES/scripts"
-export ZETDIR="$GHREPOS/zet"
+export ZET="$GHREPOS/zet"
+export LAB="$GHREPOS/lab"
 export GOBIN="$HOME/.local/bin"
 export EDITOR="vim"
 
@@ -15,17 +16,18 @@ export EDITOR="vim"
 # --------------–-------–--------–--------–-------–--–-----
 alias g='git'
 alias dot='cd $DOTFILES'
+alias zet="cd $ZET"
+alias repos="cd $REPOS"
 alias scripts='cd $SCRIPTS'
+alias lab='cd $LAB'
 alias ls='ls -h --color=auto'
 alias df='df -h'
 alias chmox='chmod +x'
 alias temp='cd $(mktemp -d)'
-alias more="less"
-alias zet="cd $ZETDIR"
-alias repos="cd $REPOS"
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias show="defaults write com.apple.Finder AppleShowAllFiles -bool true; killall Finder"
-alias hide="defaults write com.apple.Finder AppleShowAllFiles -bool false; killall Finder"
+alias more='less'
+alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias show='defaults write com.apple.Finder AppleShowAllFiles -bool true; killall Finder'
+alias hide='defaults write com.apple.Finder AppleShowAllFiles -bool false; killall Finder'
 
 # --------------–-------–--------–--------–-------–--–-----
 # PATH

@@ -10,6 +10,7 @@ export ZET="$GHREPOS/zet"
 export LAB="$GHREPOS/lab"
 export GOBIN="$HOME/.local/bin"
 export EDITOR="vim"
+export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
 
 # --------------–-------–--------–--------–-------–--–-----
 # ALIASES

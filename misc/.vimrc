@@ -13,9 +13,6 @@ call plug#end()
 " syntax highlight
 syntax on
 
-" use dark colors from colorscheme
-set background=dark
-
 " file encoding
 set encoding=utf-8
 

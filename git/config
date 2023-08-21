@@ -1,24 +1,6 @@
 [hub]
   protocol = https
 
-[alias]
-  # --------------–-------–--------–--------–-------–--–-----
-  # Faster commands
-  # --------------–-------–--------–--------–-------–--–-----
-  g = git
-  ad = add .
-  br = branch
-  c = checkout
-  cb = checkout -b
-  cm = commit -m
-  cam = commit -a -m
-  pl = pull
-  ps = push
-  psm = push origin master
-  psd = push origin dev
-  st = status
-  ri = rebase -i
-
   # --------------–-------–--------–--------–-------–--–-----
   # More intuitive commands
   # --------------–-------–--------–--------–-------–--–-----

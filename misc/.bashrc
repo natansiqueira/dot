@@ -1,68 +1,31 @@
-# --------------–-------–--------–--------–-------–--–-----
-# VARIABLES
-# --------------–-------–--------–--------–-------–--–-----
-export GITUSER="$USER"
-export REPOS="$HOME/Repos"
-export GHREPOS="$REPOS/github.com/$GITUSER"
-export DOTFILES="$GHREPOS/dot"
-export SCRIPTS="$DOTFILES/scripts"
-export ZET="$GHREPOS/zet"
-export LAB="$GHREPOS/lab"
-export GOBIN="$HOME/.local/bin"
-export EDITOR="vim"
+# homebrew
+export HOMEBREW_PREFIX="/opt/homebrew";
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+export HOMEBREW_REPOSITORY="/opt/homebrew";
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
 
-# --------------–-------–--------–--------–-------–--–-----
-# ALIASES
-# --------------–-------–--------–--------–-------–--–-----
-alias g='git'
-alias dot='cd $DOTFILES'
-alias zet="cd $ZET"
-alias repos="cd $REPOS"
-alias scripts='cd $SCRIPTS'
-alias lab='cd $LAB'
-alias ls='ls -h --color=auto'
-alias df='df -h'
-alias chmox='chmod +x'
-alias temp='cd $(mktemp -d)'
-alias more='less'
-alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
-alias show='defaults write com.apple.Finder AppleShowAllFiles -bool true; killall Finder'
-alias hide='defaults write com.apple.Finder AppleShowAllFiles -bool false; killall Finder'
+# welcome message
+# figlet "bash"
 
-# --------------–-------–--------–--------–-------–--–-----
-# PATH
-# --------------–-------–--------–--------–-------–--–-----
-pathprepend() {
-	for arg in "$@"; do
-		test -d "$arg" || continue
-		PATH=${PATH//:"$arg:"/:}
-		PATH=${PATH/#"$arg:"/}
-		PATH=${PATH/%":$arg"/}
-		export PATH="$arg${PATH:+":${PATH}"}"
-	done
-} && export -f pathprepend
+# variables
+export GITUSER=$USER
+export REPOS="$HOME/Repos"
+export GREPOS="$HOME/Repos/github.com/$GITUSER"
+export ZETDIR="$GHREPOS/zet"
+export EDITOR="vi"
+export GOBIN="~/.local/bin"
 
-# remember last arg will be first in path
-pathprepend \
-	"$HOME/.local/bin" \
-	"$SCRIPTS"
-
-# --------------–-------–--------–--------–-------–--–-----
-# AUTO COMPLETE
-# --------------–-------–--------–--------–-------–--–-----
-complete -C keg keg
-
-# --------------–-------–--------–--------–-------–--–-----
-# PROMPT
-# --------------–-------–--------–--------–-------–--–-----
+# prompt
 PROMPT_LONG=20
 PROMPT_MAX=95
 PROMPT_AT=@
 
 __ps1() {
 	local P='$' dir="${PWD##*/}" B countme short long double \
-		r='\[\e[31m\]' g='\[\e[30m\]' h='\[\e[34m\]' \
+		r='\[\e[31m\]' g='\[\e[37m\]' h='\[\e[34m\]' \
 		u='\[\e[33m\]' p='\[\e[34m\]' w='\[\e[35m\]' \
 		b='\[\e[36m\]' x='\[\e[0m\]'
 
@@ -92,4 +55,15 @@ __ps1() {
 
 PROMPT_COMMAND="__ps1"
 
+# path
+export PATH="$PATH:$GOBIN"
+
+# aliases
+alias repos="cd $GREPOS"
+alias python="python3"
+alias ll="ls -alhpG"
+alias temp='cd $(mktemp -d)'
+
+
+# auto complention
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

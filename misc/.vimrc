@@ -1,26 +1,23 @@
-call plug#begin()
-
-"
-" Plugins
-" 
-
 " fzf
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+set rtp+=/opt/homebrew/opt/fzf
 
-call plug#end()
+" airline theme
+let g:airline_theme='base16_grayscale'
 
-" syntax highlight
+" syntax highlighting
 syntax on
+
+" dark background
+set background=dark
+
+" colorscheme
+colorscheme simple-dark
 
 " file encoding
 set encoding=utf-8
 
 " show line numbers
 set number
-
-" show line numbers related to the current line
-" so you can easily navigate with :[+-]n (n -> line number)
 set relativenumber
 
 " tab size
@@ -40,9 +37,6 @@ set expandtab
 
 " enables mouse on INSERT mode
 set mouse=a
-
-" copy and paste
-set clipboard=unnamedplus
 
 " ignore case when searcing
 set ignorecase
@@ -64,8 +58,17 @@ set noswapfile
 " clear highlited matches
 " <CR> = Enter Key
 " noh = nohlsearch
-nnoremap <CR> :noh<CR>
+nnoremap <silent> <CR> :silent noh<CR>
 
 " open fzf
 " <C-p> = Ctrl + p
-nnoremap <C-p> :Files %:p:h<CR>
+nnoremap <C-p> :Files<CR>
+
+" mode color
+"hi Visual cterm=none ctermbg=white ctermfg=black
+hi Search cterm=none ctermbg=white ctermfg=black
+
+" error color
+hi Error ctermbg=red ctermfg=black 
+hi ErrorMsg ctermbg=red ctermfg=black 
+

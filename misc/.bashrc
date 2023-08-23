@@ -40,9 +40,12 @@ __ps1() {
 	[[ $B == master || $B == main ]] && b="$r"
 	[[ -n "$B" ]] && B="$g($b$B$g)"
 
-	short="$u\u$g$PROMPT_AT$h\h$g:$w$dir$B$p$P$x "
-	long="╔$g $u\u$g$PROMPT_AT$h\h$g:$w$dir$B\n╚$g $p$P$x "
-	double="╔$g $u\u$g$PROMPT_AT$h\h$g:$w$dir\n║$g $B\n╚$g $p$P$x "
+  R=$(echo $RUBY_VERSION)
+  [[ -n "$R" ]] && R="[◇ $b$R$g]"
+
+	short="$u\u$g$PROMPT_AT$h\h$g:$w$dir $R$B$p$P$x "
+	long="╔$g $u\u$g$PROMPT_AT$h\h$g:$w$dir $R$B\n╚$g $p$P$x "
+	double="╔$g $u\u$g$PROMPT_AT$h\h$g:$w$dir\n║$g $R $B\n╚$g $p$P$x "
 
 	if ((${#countme} > PROMPT_MAX)); then
 		PS1="$double"
@@ -65,5 +68,7 @@ alias ll="ls -alhpG"
 alias temp='cd $(mktemp -d)'
 
 
-# auto complention
+# source
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh

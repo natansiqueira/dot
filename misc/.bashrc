@@ -1,11 +1,10 @@
 # homebrew
-export HOMEBREW_PREFIX="/opt/homebrew";
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-export HOMEBREW_REPOSITORY="/opt/homebrew";
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
-export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
-export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
-export FZF_DEFAULT_COMMAND="find . -path '*/\.*' -type d -prune -o -type f -print -o -type l -print 2> /dev/null | sed s/^..//"
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+export HOMEBREW_REPOSITORY="/opt/homebrew"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
+export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
+export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
 
 # welcome message
 # figlet "bash"
@@ -17,6 +16,8 @@ export GREPOS="$HOME/Repos/github.com/$GITUSER"
 export ZETDIR="$GHREPOS/zet"
 export EDITOR="vi"
 export GOBIN="~/.local/bin"
+export N_PREFIX="$HOME/.n"
+export N_PRESERVE_NPM=1
 
 # prompt
 PROMPT_LONG=20
@@ -41,7 +42,7 @@ __ps1() {
 	[[ -n "$B" ]] && B="$g($b$B$g)"
 
   R=$(echo $RUBY_VERSION)
-  [[ -n "$R" ]] && R="[◇ $b$R$g]"
+  [[ -n "$R" ]] && R="$g[◇ $b$R$g]"
 
 	short="$u\u$g$PROMPT_AT$h\h$g:$w$dir $R$B$p$P$x "
 	long="╔$g $u\u$g$PROMPT_AT$h\h$g:$w$dir $R$B\n╚$g $p$P$x "
@@ -60,6 +61,7 @@ PROMPT_COMMAND="__ps1"
 
 # path
 export PATH="$PATH:$GOBIN"
+export PATH=$N_PREFIX/bin:$PATH
 
 # aliases
 alias repos="cd $GREPOS"
@@ -67,8 +69,8 @@ alias python="python3"
 alias ll="ls -alhpG"
 alias temp='cd $(mktemp -d)'
 
-
 # source
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.2.2

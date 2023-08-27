@@ -1,4 +1,9 @@
+# homebrew
 eval $(/opt/homebrew/bin/brew shellenv)
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 
 # variables
 export REPOS="$HOME/Repos"
@@ -17,20 +22,23 @@ alias temp="cd $(mktemp -d)"
 export PATH=$PATH:$SCRIPTS
 
 # prompt
-my_prompt() {
-    local AT='@' P='$' dir='${PWD##*/}' B R \
-    w='\e[30m' r='\e[31m' g='\e[32m' bl='\e[34m' \
-    y='\e[33m' m='\e[35m' cy='\e[36m' gr='\e[37m' n='\e[0m'
+__ps1() {
+  local AT='@' P='$' dir="${PWD##*/}" B R \
+  r='\[\e[31m\]' w='\[\e[32m\]' bl='\[\e[34m\]' \
+  y='\[\e[33m\]' p='\[\e[34m\]' w='\[\e[35m\]' \
+  cy='\[\e[36m\]' x='\[\e[0m\]'
 
-    [[ $PWD = / ]] && dir=/
-    [[ $PWD = "$HOME" ]] && dir='~'
+  [[ $PWD = / ]] && dir=/
+  [[ $PWD = "$HOME" ]] && dir='~'
 
-    B=$(git branch --show-current 2>/dev/null)
-    [[ -n "$B" ]] && B="$gr($cy$B$gr)"
+  B=$(git branch --show-current 2>/dev/null)
+  [[ $(git status --porcelain 2> /dev/null) ]] && B="$B *"
+  [[ -n "$B" ]] && B="$w($cy$B$w)"
 
-    [[ -n "$RUBY_VERRSION" ]] && R="$gr[◇ $cy$R$gr]"
+  [[ -n "$RUBY_VERSION" ]] && R="$w[◇ $cy$RUBY_VERSION$w]"
 
-    PS1="╔ $y\u$g$AT$bl\h$n:$m$dir$R$B\n╚ $bl$P$n "
+  PS1="╔ $w:$w$dir $B $R\n╚ $bl$P$x "
 }
 
-PROMPT_COMMAND="my_prompt"
+PROMPT_COMMAND="__ps1"
+

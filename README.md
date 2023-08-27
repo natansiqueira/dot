@@ -4,7 +4,7 @@ My personal tweaks on **macOS**. Tweak it as you like it, [dotfiles are meant to
 
 Have fun!
 
-<img width="842" alt="Terminal with bash shell" src="https://github.com/natanounatan/dot/assets/141770869/6f1f700e-cbe0-4e3b-9c48-eaa43ece006d">
+<img width="922" alt="Sample screenshot of the terminal.app with the dotfiles in action" src="https://github.com/natanounatan/dot/assets/141770869/88676b4d-eb37-4769-998d-4a2f108ce3b9">
 
 # thanks to...
 * [Diéssica](https://github.com/diessica/dotfiles) for the base for these repository and where I got to know what dotfiles are

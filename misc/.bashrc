@@ -1,76 +1,34 @@
-# homebrew
-export HOMEBREW_PREFIX="/opt/homebrew"
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
-export HOMEBREW_REPOSITORY="/opt/homebrew"
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
-export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
-export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
-
-# welcome message
-# figlet "bash"
+eval $(/opt/homebrew/bin/brew shellenv)
 
 # variables
-export GITUSER=$USER
 export REPOS="$HOME/Repos"
-export GREPOS="$HOME/Repos/github.com/$GITUSER"
-export ZETDIR="$GHREPOS/zet"
-export EDITOR="vi"
-export GOBIN="~/.local/bin"
-export N_PREFIX="$HOME/.n"
-export N_PRESERVE_NPM=1
+export GHREPOS="$REPOS/github.com"
+export DOTFILES="$GHREPOS/dot"
+export SCRIPTS="$DOTFILES/scripts"
+export EDITOR="zed -w"
+
+# aliases
+alias l="ls"
+alias ll="ls -l"
+alias lll="ls -alhG"
+alias temp="cd $(mktemp -d)"
+
+# path
+export PATH=$PATH:$SCRIPTS
 
 # prompt
-PROMPT_LONG=20
-PROMPT_MAX=95
-PROMPT_AT=@
+my_prompt() {
+	local AT='@' P='$' dir="${PWD##*/}" B R
 
-__ps1() {
-	local P='$' dir="${PWD##*/}" B countme short long double \
-		r='\[\e[31m\]' g='\[\e[37m\]' h='\[\e[34m\]' \
-		u='\[\e[33m\]' p='\[\e[34m\]' w='\[\e[35m\]' \
-		b='\[\e[36m\]' x='\[\e[0m\]'
-
-	[[ $EUID == 0 ]] && P='#' && u=$r && p=$u # root
 	[[ $PWD = / ]] && dir=/
 	[[ $PWD = "$HOME" ]] && dir='~'
 
 	B=$(git branch --show-current 2>/dev/null)
-	[[ $dir = "$B" ]] && B=.
-	countme="$USER$PROMPT_AT$(hostname):$dir($B)\$ "
+	[[ -n "$B" ]] && B="($B)"
 
-	[[ $B == master || $B == main ]] && b="$r"
-	[[ -n "$B" ]] && B="$g($b$B$g)"
+  [[ -n "$RUBY_VERRSION" ]] && R="[◇ $R]"
 
-  R=$(echo $RUBY_VERSION)
-  [[ -n "$R" ]] && R="$g[◇ $b$R$g]"
-
-	short="$u\u$g$PROMPT_AT$h\h$g:$w$dir $R$B$p$P$x "
-	long="╔$g $u\u$g$PROMPT_AT$h\h$g:$w$dir $R$B\n╚$g $p$P$x "
-	double="╔$g $u\u$g$PROMPT_AT$h\h$g:$w$dir\n║$g $R $B\n╚$g $p$P$x "
-
-	if ((${#countme} > PROMPT_MAX)); then
-		PS1="$double"
-	elif ((${#countme} > PROMPT_LONG)); then
-		PS1="$long"
-	else
-		PS1="$short"
-	fi
+	PS1="\u$AT\h:$dir$R$B$P "
 }
 
-PROMPT_COMMAND="__ps1"
-
-# path
-export PATH="$PATH:$GOBIN"
-export PATH=$N_PREFIX/bin:$PATH
-
-# aliases
-alias repos="cd $GREPOS"
-alias python="python3"
-alias ll="ls -alhpG"
-alias temp='cd $(mktemp -d)'
-
-# source
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.2.2
+PROMPT_COMMAND="my_prompt"

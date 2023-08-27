@@ -1,44 +1,12 @@
-[hub]
-  protocol = https
-
-  # --------------–-------–--------–--------–-------–--–-----
-  # More intuitive commands
-  # --------------–-------–--------–--------–-------–--–-----
-  # List tags
-  tags = tag -l
-  # List branches
-  branches = branch -a
-  # Reset (uncomitted) changes
-  abort = reset --hard HEAD
-  # Remove last commit
+[alias]
   uncommit = reset HEAD~1
-  # Rewrite last commit message
   recommit = commit --amend -m
-  # Show a full log
-  graph = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
-  # Name/email of the author
   whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-  # Commit name
-  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-  # Stashing include tracked files
-  stash = stash --include-untracked
-  # Cleanup merged branches
-  cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
-  # Empty commit
-  empty-commit = commit --allow-empty -m
-  # Current Git email
   whoami = "config user.email"
 
 [core]
   excludesfile = ~/.gitignore_global
   editor = zed -w
 
-[apply]
-  whitespace = fix
-
-[color]
-  ui = auto
-  interactive = auto
-
-[include]
-  path = .gitlocal
+[init]
+	defaultBranch = main

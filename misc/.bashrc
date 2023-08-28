@@ -13,6 +13,7 @@ export SCRIPTS="$DOTFILES/scripts"
 export EDITOR="zed -w"
 
 # aliases
+alias g="git"
 alias l="ls"
 alias ll="ls -l"
 alias lll="ls -alhG"

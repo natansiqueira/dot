@@ -2,8 +2,8 @@
 eval $(/opt/homebrew/bin/brew shellenv)
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+. /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+. /opt/homebrew/opt/chruby/share/chruby/auto.sh
 
 # variables
 export REPOS="$HOME/Repos"

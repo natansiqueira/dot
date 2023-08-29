@@ -4,14 +4,15 @@ call plug#begin()
 	Plug 'Yggdroot/indentLine'
 	Plug 'rose-pine/vim'
 	Plug 'itchyny/lightline.vim'
+  Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 syntax on
 set encoding=utf-8
 
-set background=light
-colorscheme rosepine_dawn
-let g:lightline = { 'colorscheme': 'rosepine_dawn' }
+set background=dark
+colorscheme rosepine
+let g:lightline = { 'colorscheme': 'rosepine' }
 
 set number
 set relativenumber
@@ -21,6 +22,7 @@ set cursorline
 set showmatch
 set laststatus=2
 set mouse=a
+set clipboard=unnamed
 
 set tabstop=2
 set softtabstop=2
@@ -48,4 +50,7 @@ nnoremap <silent> <C-p> :Files %:p:h<CR>
 nnoremap <silent> <C-o> :Buffers<CR>
 nnoremap <silent> <CR> :noh<CR>
 nmap <silent> <C-s> :w<CR>
+nmap <silent> <Tab> :tabn<CR>
+nmap <silent> <C-n> :tabnew<CR>
+nmap <silent> <C-j> :terminal<CR>
 imap <silent> <C-s> :w<CR>

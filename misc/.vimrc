@@ -46,11 +46,12 @@ set undofile
 
 hi CursorLine cterm=none ctermbg=0
 
-nnoremap <silent> <C-p> :Files %:p:h<CR>
+nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-o> :Buffers<CR>
 nnoremap <silent> <CR> :noh<CR>
-nmap <silent> <C-s> :w<CR>
+nmap <silent> <Esc> <C-s> :w<CR>
 nmap <silent> <Tab> :tabn<CR>
 nmap <silent> <C-n> :tabnew<CR>
+nmap <silent> <C-w> :q<CR>
 nmap <silent> <C-j> :terminal<CR>
 imap <silent> <C-s> :w<CR>

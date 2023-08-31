@@ -25,7 +25,7 @@ export PATH=$PATH:$SCRIPTS
 # prompt
 __ps1() {
   local P='$' dir="${PWD##*/}" B R \
-  r='\[\e[31m\]' g='\[\e[32m\]' \
+  r='\[\e[31m\]' b='\[\e[34m\]' \
   x='\[\e[0m\]'
 
   [[ $PWD = / ]] && dir=/
@@ -33,7 +33,7 @@ __ps1() {
 
   B=$(git branch --show-current 2>/dev/null)
   [[ $(git status --porcelain 2> /dev/null) ]] && B="$B *"
-  [[ -n "$B" ]] && B=" ($g$B$x)"
+  [[ -n "$B" ]] && B=" ($b$B$x)"
 
   [[ -n "$RUBY_VERSION" ]] && R=" [$r\[◇\] $RUBY_VERSION$x]"
 

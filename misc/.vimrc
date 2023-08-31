@@ -5,20 +5,23 @@ call plug#begin()
 	Plug 'rose-pine/vim'
 	Plug 'itchyny/lightline.vim'
   Plug 'vim-ruby/vim-ruby'
+  Plug 'rose-pine/vim'
 call plug#end()
 
 syntax on
 set encoding=utf-8
-
-set background=dark
-colorscheme rosepine
-let g:lightline = { 'colorscheme': 'rosepine' }
+set nocompatible
+filetype on          
+filetype indent on   
+filetype plugin on   
+set background=light
+let g:lightline = { 'colorscheme': 'PaperColor' }
+let mapleader = ';'
 
 set number
 set relativenumber
 set hidden
 set scrolloff=5
-set cursorline
 set showmatch
 set laststatus=2
 set mouse=a
@@ -44,14 +47,5 @@ set nowritebackup
 set undodir=~/.vim/backups
 set undofile
 
-hi CursorLine cterm=none ctermbg=0
-
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <C-o> :Buffers<CR>
-nnoremap <silent> <CR> :noh<CR>
-nmap <silent> <C-s> :w<CR>
-imap <silent> <C-s> <Esc>:w<CR>
-nmap <silent> <Tab> :tabn<CR>
-nmap <silent> <C-n> :tabnew<CR>
-nmap <silent> <C-w> :q<CR>
-nmap <silent> <C-j> :terminal<CR>
+noremap <leader>q :q<CR>
+noremap <leader>w :w<CR>

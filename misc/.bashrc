@@ -10,7 +10,7 @@ export REPOS="$HOME/Repos"
 export GHREPOS="$REPOS/github.com"
 export DOTFILES="$GHREPOS/dot"
 export SCRIPTS="$DOTFILES/scripts"
-export EDITOR="zed -w"
+export nDITOR="code -w"
 
 # aliases
 alias g="git"
@@ -24,21 +24,20 @@ export PATH=$PATH:$SCRIPTS
 
 # prompt
 __ps1() {
-  local AT='@' P='$' dir="${PWD##*/}" B R \
-  r='\[\e[31m\]' w='\[\e[32m\]' bl='\[\e[34m\]' \
-  y='\[\e[33m\]' p='\[\e[34m\]' w='\[\e[35m\]' \
-  cy='\[\e[36m\]' x='\[\e[0m\]'
+  local P='$' dir="${PWD##*/}" B R \
+  r='\[\e[31m\]' y='\[\e[33m\]' \
+  x='\[\e[0m\]'
 
   [[ $PWD = / ]] && dir=/
   [[ $PWD = "$HOME" ]] && dir='~'
 
   B=$(git branch --show-current 2>/dev/null)
   [[ $(git status --porcelain 2> /dev/null) ]] && B="$B *"
-  [[ -n "$B" ]] && B="$w($cy$B$w)"
+  [[ -n "$B" ]] && B=" ($y$B$x)"
 
-  [[ -n "$RUBY_VERSION" ]] && R="$w[◇ $cy$RUBY_VERSION$w]"
+  [[ -n "$RUBY_VERSION" ]] && R=" [$r\[◇\] $RUBY_VERSION$x]"
 
-  PS1="╔ $w:$w$dir $B $R\n╚ $bl$P$x "
+  PS1="╔ $dir$B$R\n╚ $P$x "
 }
 
 PROMPT_COMMAND="__ps1"

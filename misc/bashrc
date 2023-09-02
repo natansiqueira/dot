@@ -26,7 +26,8 @@ export PATH=$PATH:$SCRIPTS
 # prompt
 __ps1() {
 	local P='$' dir="${PWD##*/}" B R \
-	b='\[\e[34m\]' c='\[\e[36m\]' x='\[\e[0m\]'
+	b='\[\e[34m\]' c='\[\e[36m\]' \
+	y='\[\e[33m\]' x='\[\e[0m\]'
 
 	[[ $EUID == 0 ]] && P='#' && u=$r && p=$u # root
 	[[ $PWD = / ]] && dir=/
@@ -35,12 +36,11 @@ __ps1() {
 	B=$(git branch --show-current 2>/dev/null)
 	[[ $(git status --porcelain 2> /dev/null) ]] && B="$B *"
 
-	[[ $B == master || $B == main ]] && b="$r"
 	[[ -n "$B" ]] && B=" ($B)"
 
 	[[ -n "$RUBY_VERSION" ]] && R=" [\[◇\] $RUBY_VERSION]"
 
-	PS1="╔ :$c$dir$b$B$R\n╚ $P$x "
+	PS1="\[╔\] :$y$dir$b$B$R\n$c\[╚\] $P$x "
 }
 
 PROMPT_COMMAND="__ps1"

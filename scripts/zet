@@ -1,0 +1,87 @@
+#/usr/bin/env bash
+
+default_zet_dir="$HOME/.zet"
+default_zettels_dir="$default_zet_dir/zets"
+
+create_zet_dir() {
+    if ! [ -d $default_zettels_dir ]; then
+        echo "→ creating zet (~/.zet)"
+        echo "→ creating zettels (~/.zet/zettels)"
+        mkdir -p $default_zettels_dir
+        cd $default_zet_dir
+
+        if [ $(type git &>/dev/null | echo $?) -eq 0 ]; then
+            echo "→ initializing git repository"
+            git init &>/dev/null
+        fi
+
+        cd -
+
+        echo "✓ zet ok"
+    fi
+}
+
+template() {
+    content="---\ntags:\n---\n\n# Title\n\nContent\n"
+    echo -e $content
+}
+
+new() {
+    create_zet_dir
+
+    zet_dir="$default_zettels_dir/$EPOCHSECONDS"
+    zet_path="$zet_dir/README.md"
+
+    echo "→ creating new zettel"
+    mkdir -p $zet_dir
+    touch $zet_path
+    template > $zet_path
+
+    if [ -n $EDITOR ]; then
+        sleep 0.5
+        echo "→ opening new zettel in your text editor"
+        exec $EDITOR $zet_path
+    fi
+}
+
+
+sync() {
+    cd $default_zet_dir
+
+    if [ -n $(git status --porcelain 2> /dev/null) ]; then
+        git add .
+        git commit -m "add zettels"
+    fi
+
+    git push -u
+
+    cd -
+
+    echo "✓ zet synchronized"
+}
+
+help() {
+    echo "zet - simple zettelkasten"
+    echo
+    echo "Syntax: zet [-n|new|s|sync|h|help]"
+    echo "options:"
+    echo "n | new       initialize a zet under ~/.zet and/or create a new zettel"
+    echo "s | sync      sync with remote git repository. it assumes you have your remote upstream defined"
+    echo "h | help      print this help"
+    echo
+}
+
+case "$1" in
+    n|new)
+        new
+        exit
+        ;;
+    s|sync)
+        sync
+        exit
+        ;;
+    *)
+        help
+        exit
+        ;;
+esac

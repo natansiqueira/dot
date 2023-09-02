@@ -38,7 +38,7 @@ __ps1() {
 
   [[ -n "$RUBY_VERSION" ]] && R=" $g[$y\[◇\] $RUBY_VERSION$g]$w"
 
-  PS1="$w\[╔\] $dir$B$R\n\[╚\] $$P "
+  PS1="$w\[╔\] $dir$B$R\n\[╚\] $P "
 }
 
 PROMPT_COMMAND="__ps1"

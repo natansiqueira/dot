@@ -48,12 +48,12 @@ new() {
 sync() {
     cd $default_zet_dir
 
-    if [ -n $(git status --porcelain 2> /dev/null) ]; then
+    if [[ $(git status --porcelain) && 1 ]]; then
         git add .
         git commit -m "add zettels"
     fi
 
-    git push -u
+    git push -u origin main
 
     cd -
 

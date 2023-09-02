@@ -10,7 +10,7 @@ export REPOS="$HOME/Repos"
 export GHREPOS="$REPOS/github.com"
 export DOTFILES="$GHREPOS/dot"
 export SCRIPTS="$DOTFILES/scripts"
-export EDITOR="code -w"
+export EDITOR="vim"
 
 # aliases
 alias g="git"
@@ -25,20 +25,22 @@ export PATH=$PATH:$SCRIPTS
 
 # prompt
 __ps1() {
-  local P='$' dir="${PWD##*/}" B R \
-  y='\[\e[33m\]' w='\[\e[37m\]' \
-  g='\[\e[32m\]'
+	local P='$' dir="${PWD##*/}" B R \
+	b='\[\e[34m\]' c='\[\e[36m\]' x='\[\e[0m\]'
 
-  [[ $PWD = / ]] && dir=/
-  [[ $PWD = "$HOME" ]] && dir='~'
+	[[ $EUID == 0 ]] && P='#' && u=$r && p=$u # root
+	[[ $PWD = / ]] && dir=/
+	[[ $PWD = "$HOME" ]] && dir='~'
 
-  B=$(git branch --show-current 2>/dev/null)
-  [[ $(git status --porcelain 2> /dev/null) ]] && B="$B *"
-  [[ -n "$B" ]] && B=" $g($y$B$w$g)$w"
+	B=$(git branch --show-current 2>/dev/null)
+	[[ $(git status --porcelain 2> /dev/null) ]] && B="$B *"
 
-  [[ -n "$RUBY_VERSION" ]] && R=" $g[$y\[◇\] $RUBY_VERSION$g]$w"
+	[[ $B == master || $B == main ]] && b="$r"
+	[[ -n "$B" ]] && B=" ($B)"
 
-  PS1="$w\[╔\] $dir$B$R\n\[╚\] $P "
+	[[ -n "$RUBY_VERSION" ]] && R=" [\[◇\] $RUBY_VERSION]"
+
+	PS1="╔ :$c$dir$b$B$R\n╚ $P$x "
 }
 
 PROMPT_COMMAND="__ps1"

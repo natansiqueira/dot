@@ -7,8 +7,6 @@ call plug#begin()
 	Plug 'itchyny/lightline.vim'
 call plug#end()
 
-let g:fzf_preview_window = []
-
 set background=light
 colorscheme rosepine_dawn
 let g:disable_bg = 1
@@ -16,6 +14,7 @@ let g:lightline = {
       \ 'colorscheme': 'rosepine_dawn',
       \ }
 
+let g:fzf_preview_window = []
 let $FZF_DEFAULT_OPTS="--preview-window 'right:60%' --layout reverse --margin=0,0 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
 let g:fzf_layout =
@@ -37,6 +36,12 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
 
 let mapleader = ';'
 
@@ -78,4 +83,29 @@ noremap <leader>q :q<CR>
 noremap <leader>w :w<CR>
 noremap <leader>j :vert terminal<CR>
 noremap <leader>o :Buffers<CR>
-noremap <leader>p :Files<CR>
+noremap <leader>p :FZF<CR>
+noremap <leader>b :Vexplore<CR>
+noremap <leader>t :tabnew<CR>
+
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <c-@> coc#refresh()
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+

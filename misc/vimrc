@@ -3,16 +3,34 @@ call plug#begin()
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 	Plug 'Yggdroot/indentLine'
-  Plug 'rose-pine/vim'
 	Plug 'itchyny/lightline.vim'
+  Plug 'sainnhe/gruvbox-material'
 call plug#end()
 
-set background=light
-colorscheme rosepine_dawn
-let g:disable_bg = 1
-let g:lightline = {
-      \ 'colorscheme': 'rosepine_dawn',
-      \ }
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+inoremap <silent><expr> <c-@> coc#refresh()
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+nnoremap <silent> K :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
 
 let g:fzf_preview_window = []
 let $FZF_DEFAULT_OPTS="--preview-window 'right:60%' --layout reverse --margin=0,0 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
@@ -49,6 +67,13 @@ syntax on
 set encoding=utf-8
 set nocompatible
 set noshowmode
+set updatetime=300
+set signcolumn=yes
+
+set background=light
+colorscheme gruvbox-material
+let g:lightline = {'colorscheme' : 'gruvbox_material'}
+g:gruvbox_material_background
 
 set number
 set relativenumber
@@ -87,13 +112,4 @@ noremap <leader>p :FZF<CR>
 noremap <leader>b :Vexplore<CR>
 noremap <leader>t :tabnew<CR>
 
-nnoremap <silent> K :call ShowDocumentation()<CR>
-
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
-
+hi clear SignColumn 

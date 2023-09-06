@@ -10,24 +10,24 @@ export REPOS="$HOME/Repos"
 export GHREPOS="$REPOS/github.com"
 export DOTFILES="$GHREPOS/dot"
 export SCRIPTS="$DOTFILES/scripts"
-export EDITOR="vim"
+export NAND2TETRIS="$REPOS/github.com/nand2tetris/tools"
+export EDITOR="vi"
 
 # aliases
 alias g="git"
 alias l="ls"
-alias ll="ls -l"
-alias lll="ls -alhG"
+alias ll="ls -lhG"
+alias lll="ls -AlhG"
 alias temp="cd $(mktemp -d)"
 alias mygit=$HOME/Repos/github.com/codecrafters-git-ruby/your_git.sh
 
 # path
 export PATH=$PATH:$SCRIPTS
+export PATH=$PATH:$NAND2TETRIS
 
 # prompt
 __ps1() {
-	local P='$' dir="${PWD##*/}" B R \
-	b='\[\e[34m\]' c='\[\e[36m\]' \
-	y='\[\e[33m\]' x='\[\e[0m\]'
+	local P='$' dir="${PWD##*/}" B R
 
 	[[ $EUID == 0 ]] && P='#' && u=$r && p=$u # root
 	[[ $PWD = / ]] && dir=/
@@ -37,10 +37,9 @@ __ps1() {
 	[[ $(git status --porcelain 2> /dev/null) ]] && B="$B *"
 
 	[[ -n "$B" ]] && B=" ($B)"
-
 	[[ -n "$RUBY_VERSION" ]] && R=" [\[◇\] $RUBY_VERSION]"
 
-	PS1="\[╔\] :$y$dir$b$B$R\n$c\[╚\] $P$x "
+	PS1=":$dir$B$R\n$P "
 }
 
 PROMPT_COMMAND="__ps1"

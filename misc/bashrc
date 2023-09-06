@@ -4,6 +4,7 @@ eval $(/opt/homebrew/bin/brew shellenv)
 
 . /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 . /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby '3.2.2'
 
 # variables
 export REPOS="$HOME/Repos"
@@ -19,7 +20,6 @@ alias l="ls"
 alias ll="ls -lhG"
 alias lll="ls -AlhG"
 alias temp="cd $(mktemp -d)"
-alias mygit=$HOME/Repos/github.com/codecrafters-git-ruby/your_git.sh
 
 # path
 export PATH=$PATH:$SCRIPTS
@@ -27,19 +27,18 @@ export PATH=$PATH:$NAND2TETRIS
 
 # prompt
 __ps1() {
-	local P='$' dir="${PWD##*/}" B R
+	local dir="${PWD##*/}" B R
 
-	[[ $EUID == 0 ]] && P='#' && u=$r && p=$u # root
 	[[ $PWD = / ]] && dir=/
 	[[ $PWD = "$HOME" ]] && dir='~'
 
 	B=$(git branch --show-current 2>/dev/null)
 	[[ $(git status --porcelain 2> /dev/null) ]] && B="$B *"
 
-	[[ -n "$B" ]] && B=" ($B)"
-	[[ -n "$RUBY_VERSION" ]] && R=" [\[◇\] $RUBY_VERSION]"
+	[[ -n "$B" ]] && B="($B)"
+	[[ -n "$RUBY_VERSION" ]] && R="[\[◇\] $RUBY_VERSION]"
 
-	PS1=":$dir$B$R\n$P "
+	PS1=":$dir $B $R \$ "
 }
 
 PROMPT_COMMAND="__ps1"

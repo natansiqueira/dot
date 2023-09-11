@@ -15,11 +15,12 @@ export NAND2TETRIS="$REPOS/github.com/nand2tetris/tools"
 export EDITOR="vi"
 
 # aliases
-alias g="git"
 alias l="ls"
 alias ll="ls -lhG"
 alias lll="ls -AlhG"
+alias repos="cd $GHREPOS"
 alias temp="cd $(mktemp -d)"
+alias mygit="$HOME/Repos/github.com/codecrafters-git-ruby/your_git.sh"
 
 # path
 export PATH=$PATH:$SCRIPTS
@@ -27,7 +28,7 @@ export PATH=$PATH:$NAND2TETRIS
 
 # prompt
 __ps1() {
-	local dir="${PWD##*/}" B R
+	local P='$' dir="${PWD##*/}" B R
 
 	[[ $PWD = / ]] && dir=/
 	[[ $PWD = "$HOME" ]] && dir='~'
@@ -38,7 +39,7 @@ __ps1() {
 	[[ -n "$B" ]] && B="($B)"
 	[[ -n "$RUBY_VERSION" ]] && R="[\[◇\] $RUBY_VERSION]"
 
-	PS1=":$dir $B $R \$ "
+	PS1=":$dir $B $R\n$P "
 }
 
 PROMPT_COMMAND="__ps1"

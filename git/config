@@ -1,9 +1,3 @@
-[alias]
-  uncommit = reset HEAD~1
-  recommit = commit --amend -m
-  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
-  whoami = "config user.email"
-
 [core]
   excludesfile = ~/.gitignore_global
   editor = zed -w

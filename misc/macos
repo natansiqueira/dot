@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.osx` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+# --------------–-------–--------–--------–-------–--–-----
+# System interface and behaviour
+# --------------–-------–--------–--------–-------–--–-----
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# --------------–-------–--------–--------–-------–--–-----
+# Trackpad, mouse and keyboard
+# --------------–-------–--------–--------–-------–--–-----
+# Enable tap to click
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+
+# Enable two-tap to right click
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
+
+# Enable dragging without drag lock
+defaults write com.apple.AppleMultitouchTrackpad "Dragging" -bool "true"
+
+# --------------–-------–--------–--------–-------–--–-----
+# Dock, Dashboard and Menu Bar
+# --------------–-------–--------–--------–-------–--–-----
+defaults write com.apple.dock mru-spaces -bool false
+
+
+# --------------–-------–--------–--------–-------–--–-----
+# Finder
+# --------------–-------–--------–--------–-------–--–-----
+# Enable spring loading for directories
+defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+
+# Remove the spring loading delay for directories
+defaults write NSGlobalDomain com.apple.springing.delay -float 0
+
+# --------------–-------–--------–--------–-------–--–-----
+# Kill affected applications
+# --------------–-------–--------–--------–-------–--–-----
+for app in "Activity Monitor" "Dock" "Finder" "Transmission" \
+           "SystemUIServer" "ControlStrip"; do
+  killall "${app}" > /dev/null 2>&1
+done
+echo "✓ macos OK. Some of these changes require a logout/restart to take effect."

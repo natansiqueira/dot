@@ -1,39 +1,6 @@
-" plugins
-call plug#begin('~/.vim/plugged')
-  Plug 'junegunn/fzf'
-  Plug 'rose-pine/vim'
-call plug#end()
-
-let g:fzf_preview_window = []
-let $FZF_DEFAULT_OPTS="--preview-window 'right:60%' --layout reverse --margin=0,0 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
-
-let g:fzf_layout =
-\ { 'window':
-  \ { 'width': 0.98, 'height': 0.7, 'yoffset': 0.94, 'border': 'rounded' }
-\ }
-
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-let g:disable_bg=1
-
 " user interface
 syntax on
 set nonumber
-colorscheme rosepine_dawn
-set background=light
 set ruler
 set showmode
 
@@ -74,4 +41,3 @@ set undofile
 noremap <leader>d <C-d>
 noremap <leader>b <C-b>
 noremap <silent> <leader><CR> :nohl<CR>
-noremap <leader>p :FZF<CR>

@@ -2,29 +2,21 @@
 eval $(/opt/homebrew/bin/brew shellenv)
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
-. /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-. /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby '3.2.2'
 
 # variables
 export REPOS="$HOME/Repos"
-export GHREPOS="$REPOS/github.com"
-export DOTFILES="$GHREPOS/dot"
+export DOTFILES="$REPOS/dot"
 export SCRIPTS="$DOTFILES/scripts"
-export NAND2TETRIS="$REPOS/github.com/nand2tetris/tools"
 export EDITOR="vi"
 
 # aliases
 alias l="ls"
 alias ll="ls -lhG"
 alias lll="ls -AlhG"
-alias repos="cd $GHREPOS"
 alias temp="cd $(mktemp -d)"
-alias mygit="$HOME/Repos/github.com/codecrafters-git-ruby/your_git.sh"
 
 # path
 export PATH=$PATH:$SCRIPTS
-export PATH=$PATH:$NAND2TETRIS
 
 # prompt
 __ps1() {

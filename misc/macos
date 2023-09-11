@@ -28,8 +28,9 @@ defaults write com.apple.AppleMultitouchTrackpad "Dragging" -bool "true"
 # --------------–-------–--------–--------–-------–--–-----
 # Dock, Dashboard and Menu Bar
 # --------------–-------–--------–--------–-------–--–-----
-defaults write com.apple.dock mru-spaces -bool false
+defaults write com.apple.dock "show-recents" -bool "false"
 
+defaults write com.apple.dock "mineffect" -string "scale"
 
 # --------------–-------–--------–--------–-------–--–-----
 # Finder

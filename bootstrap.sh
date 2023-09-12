@@ -59,3 +59,4 @@ echo "✓ Bash shell OK."
 # --------------–-------–--------–--------–-------–--–-----
 echo "→ Setting macOS defaults... (It'll shut down Terminal, bye!)"
 sh misc/macos
+

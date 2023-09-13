@@ -42,6 +42,12 @@ defaults write NSGlobalDomain com.apple.springing.enabled -bool true
 defaults write NSGlobalDomain com.apple.springing.delay -float 0
 
 # --------------–-------–--------–--------–-------–--–-----
+# Finder
+# --------------–-------–--------–--------–-------–--–-----
+# Focus follow mouse
+defaults write com.apple.Terminal "FocusFollowsMouse" -bool "true" && killall Terminal
+
+# --------------–-------–--------–--------–-------–--–-----
 # Kill affected applications
 # --------------–-------–--------–--------–-------–--–-----
 for app in "Activity Monitor" "Dock" "Finder" "Transmission" \

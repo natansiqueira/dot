@@ -13,6 +13,7 @@ export EDITOR="vi"
 alias l="ls"
 alias ll="ls -lhG"
 alias lll="ls -AlhG"
+alias '??'="gepeto"
 alias temp="cd $(mktemp -d)"
 
 # path

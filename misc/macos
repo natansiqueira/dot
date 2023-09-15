@@ -11,16 +11,16 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # --------------–-------–--------–--------–-------–--–-----
 
 # Save to disk (not to iCloud) by default
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool "false"
 
 # --------------–-------–--------–--------–-------–--–-----
 # Trackpad, mouse and keyboard
 # --------------–-------–--------–--------–-------–--–-----
 # Enable tap to click
-defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool "true"
 
 # Enable two-tap to right click
-defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool "true"
 
 # Enable dragging without drag lock
 defaults write com.apple.AppleMultitouchTrackpad "Dragging" -bool "true"
@@ -36,7 +36,7 @@ defaults write com.apple.dock "mineffect" -string "scale"
 # Finder
 # --------------–-------–--------–--------–-------–--–-----
 # Enable spring loading for directories
-defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+defaults write NSGlobalDomain com.apple.springing.enabled -bool "true"
 
 # Remove the spring loading delay for directories
 defaults write NSGlobalDomain com.apple.springing.delay -float 0
@@ -45,7 +45,25 @@ defaults write NSGlobalDomain com.apple.springing.delay -float 0
 # Finder
 # --------------–-------–--------–--------–-------–--–-----
 # Focus follow mouse
-defaults write com.apple.Terminal "FocusFollowsMouse" -bool "true" && killall Terminal
+defaults write com.apple.Terminal "FocusFollowsMouse" -bool "true"
+
+# Show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool "true"
+
+# Search in current folder
+defaults write com.apple.finder "FXDefaultSearchScope" -string "SCcf"
+
+# Use list view in all Finder windows
+defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
+
+# Show path bar
+defaults write com.apple.finder "ShowPathbar" -bool "true"
+
+# Enable spring loading for directories
+defaults write NSGlobalDomain com.apple.springing.enabled -bool "true"
+
+# Remove the spring loading delay for directories
+defaults write NSGlobalDomain com.apple.springing.delay -float 0
 
 # --------------–-------–--------–--------–-------–--–-----
 # Kill affected applications

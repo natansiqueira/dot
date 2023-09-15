@@ -11,6 +11,7 @@ export SCRIPTS="$DOTFILES/scripts"
 export EDITOR="vi"
 
 # aliases
+unalias -a
 alias l="ls"
 alias ll="ls -lhG"
 alias lll="ls -AlhG"

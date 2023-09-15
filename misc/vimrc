@@ -1,3 +1,23 @@
+" plugins
+call plug#begin('~/.vim/plugged')
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+call plug#end()
+
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
 " user interface
 syntax on
 set nonumber
@@ -40,4 +60,4 @@ set undofile
 " key mapping
 noremap <leader>d <C-d>
 noremap <leader>b <C-b>
-noremap <silent> <leader><CR> :nohl<CR>
+

@@ -9,6 +9,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # --------------–-------–--------–--------–-------–--–-----
 # System interface and behaviour
 # --------------–-------–--------–--------–-------–--–-----
+# Check for software updates daily, not just once per week
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
 # Save to disk (not to iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool "false"
@@ -44,6 +46,9 @@ defaults write NSGlobalDomain com.apple.springing.delay -float 0
 # --------------–-------–--------–--------–-------–--–-----
 # Finder
 # --------------–-------–--------–--------–-------–--–-----
+# Disable window animations and Get Info animations
+defaults write com.apple.finder DisableAllAnimations -bool true
+
 # Focus follow mouse
 defaults write com.apple.Terminal "FocusFollowsMouse" -bool "true"
 

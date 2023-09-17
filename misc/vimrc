@@ -35,12 +35,13 @@ set ttyfast
 set backspace=indent,eol,start
 
 " tab behavior & indentation style
-set expandtab
 set tabstop=2
 set softtabstop=2
+set shiftwidth=2
 set autoindent
 set smartindent
 set smarttab
+set expandtab
 
 " searching behavior
 set ignorecase

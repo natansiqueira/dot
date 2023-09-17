@@ -1,4 +1,7 @@
 bash
 fzf
 mods
+shellcheck
+shfmt
 tree
+

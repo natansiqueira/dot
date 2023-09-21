@@ -23,7 +23,7 @@ export PATH=$PATH:$SCRIPTS
 
 # prompt
 __ps1() {
-	local P='$' dir="${PWD##*/}" B R
+	local AT='@' P='%' dir="${PWD##*/}" B R
 
 	[[ $PWD = / ]] && dir=/
 	[[ $PWD = "$HOME" ]] && dir='~'
@@ -31,10 +31,10 @@ __ps1() {
 	B=$(git branch --show-current 2>/dev/null)
 	[[ $(git status --porcelain 2> /dev/null) ]] && B="$B *"
 
-	[[ -n "$B" ]] && B="($B)"
-	[[ -n "$RUBY_VERSION" ]] && R="[\[◇\] $RUBY_VERSION]"
+	[[ -n "$B" ]] && B=" ($B)"
+	[[ -n "$RUBY_VERSION" ]] && R=" [\[◇\] $RUBY_VERSION]"
 
-	PS1=":$dir $B $R\n$P "
+	PS1="\u$AT\h: $dir$B$R\n$P "
 }
 
 PROMPT_COMMAND="__ps1"

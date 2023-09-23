@@ -23,7 +23,7 @@ export PATH=$PATH:$SCRIPTS
 
 # prompt
 __ps1() {
-	local AT='@' P='%' dir="${PWD##*/}" B R
+	local AT='@' P='$' dir="${PWD##*/}" B R
 
 	[[ $PWD = / ]] && dir=/
 	[[ $PWD = "$HOME" ]] && dir='~'
